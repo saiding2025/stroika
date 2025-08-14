@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подберите идеальный фасад из сайдинга</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
+        .image-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        .image-option:hover {
+            transform: scale(1.05);
+            border-color: #3b82f6;
+        }
+        .image-option.selected {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">🏠 Подберите идеальный фасад из сайдинга</h1>
+            <div class="w-full bg-gray-200 rounded-full h-3 mb-6">
+                <div id="progressBar" class="progress-bar bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full" style="width: 14.3%"></div>
+            </div>
+            <p class="text-gray-600">Шаг <span id="currentStep">1</span> из 7</p>
+        </div>
+
+        <!-- Step 1: Тип расчёта -->
+        <div id="step1" class="step active">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">1. Какой расчёт вас интересует?</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="image-option text-center p-6 rounded-xl" onclick="selectOption('calculation', 'material')">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/mater.jpg">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">ТОЛЬКО МАТЕРИАЛ</h3>
+                    </div>
+                    <div class="image-option text-center p-6 rounded-xl" onclick="selectOption('calculation', 'material-work')">
+                        <div class="bg-gradient-to-br from-green-100 to-green-200 h-48 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/materrab.jpg">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">МАТЕРИАЛ И РАБОТА</h3>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button id="nextBtn1" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed" disabled onclick="nextStep(2)">Далее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Производитель -->
+        <div id="step2" class="step">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">2. Есть ли у Вас предпочтения по производителю?</h2>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand1')">
+                        <div class="bg-gradient-to-br from-red-100 to-red-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proNonam.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Любой главное цена</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand2')">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proUPL.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Ю-Пласт</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand3')">
+                        <div class="bg-gradient-to-br from-green-100 to-green-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proALTA.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Альта Профиль</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand4')">
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proDoke.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Docke</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand5')">
+                        <div class="bg-gradient-to-br from-orange-100 to-orange-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proFINE.jpg">
+                        </div>
+                        <p class="text-sm font-medium">FineBer</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand6')">
+                        <div class="bg-gradient-to-br from-teal-100 to-teal-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proGrand.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Grand Line</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand7')">
+                        <div class="bg-gradient-to-br from-pink-100 to-pink-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proNORD.jpg">
+                        </div>
+                        <p class="text-sm font-medium">NordSide</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand8')">
+                        <div class="bg-gradient-to-br from-indigo-100 to-indigo-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proTeknikol.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Техноникель</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('manufacturer', 'brand9')">
+                        <div class="bg-gradient-to-br from-gray-100 to-gray-200 h-32 rounded-lg mb-3 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/proVOX.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Vox</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button id="nextBtn2" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed" disabled onclick="nextStep(3)">Далее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Коллекция -->
+        <div id="step3" class="step">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">3. Какая коллекция сайдинга вам нравится?</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('collection', 'collection1')">
+                        <div class="bg-gradient-to-br from-amber-100 to-amber-200 h-40 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/el.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Ель</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('collection', 'collection2')">
+                        <div class="bg-gradient-to-br from-slate-100 to-slate-200 h-40 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/kirpis.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Кирпич</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('collection', 'collection3')">
+                        <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 h-40 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/slanec.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Сланец</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('collection', 'collection4')">
+                        <div class="bg-gradient-to-br from-rose-100 to-rose-200 h-40 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/hohla.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Хохла</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('collection', 'collection5')">
+                        <div class="bg-gradient-to-br from-cyan-100 to-cyan-200 h-40 rounded-lg mb-4 flex items-center justify-center">
+						<img src="..\cartin\sepa.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Щепа</p>
+                    </div>
+                    <div class="image-option text-center p-4 rounded-xl" onclick="selectOption('collection', 'collection6')">
+                        <div class="bg-gradient-to-br from-violet-100 to-violet-200 h-40 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/dub.jpg">
+                        </div>
+                        <p class="text-sm font-medium">Дуб</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button id="nextBtn3" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed" disabled onclick="nextStep(4)">Далее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Местоположение -->
+        <div id="step4" class="step">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">4. Где находится ваш объект?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                    <button class="location-option p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all" onclick="selectLocation('minsk')">
+                        <span class="text-lg">📍 Минск и область</span>
+                    </button>
+                    <button class="location-option p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all" onclick="selectLocation('brest')">
+                        <span class="text-lg">📍 Брест и область</span>
+                    </button>
+                    <button class="location-option p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all" onclick="selectLocation('grodno')">
+                        <span class="text-lg">📍 Гродно и область</span>
+                    </button>
+                    <button class="location-option p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all" onclick="selectLocation('gomel')">
+                        <span class="text-lg">📍 Гомель и область</span>
+                    </button>
+                    <button class="location-option p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all" onclick="selectLocation('vitebsk')">
+                        <span class="text-lg">📍 Витебск и область</span>
+                    </button>
+                    <button class="location-option p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all" onclick="selectLocation('mogilev')">
+                        <span class="text-lg">📍 Могилев и область</span>
+                    </button>
+                    <div class="md:col-span-2">
+                        <button class="location-option w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all" onclick="selectLocation('custom')">
+                            <span class="text-lg">✏️ Свой вариант</span>
+                        </button>
+                        <input type="text" id="customLocation" class="w-full mt-3 p-3 border border-gray-300 rounded-lg hidden" placeholder="Укажите ваше местоположение">
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button id="nextBtn4" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed" disabled onclick="nextStep(5)">Далее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Площадь -->
+        <div id="step5" class="step">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">5. Какая приблизительная площадь фасада?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                    <button class="area-option p-6 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all" onclick="selectArea('small')">
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🏠</div>
+                            <span class="text-lg font-semibold">до 100 кв.м</span>
+                        </div>
+                    </button>
+                    <button class="area-option p-6 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all" onclick="selectArea('medium')">
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🏘️</div>
+                            <span class="text-lg font-semibold">от 100 - 150 кв.м</span>
+                        </div>
+                    </button>
+                    <button class="area-option p-6 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all" onclick="selectArea('large')">
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🏢</div>
+                            <span class="text-lg font-semibold">более 150 кв.м</span>
+                        </div>
+                    </button>
+                    <div>
+                        <button class="area-option w-full p-6 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all" onclick="selectArea('custom')">
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">✏️</div>
+                                <span class="text-lg font-semibold">Свой вариант</span>
+                            </div>
+                        </button>
+                        <input type="text" id="customArea" class="w-full mt-3 p-3 border border-gray-300 rounded-lg hidden" placeholder="Укажите площадь в кв.м">
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button id="nextBtn5" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed" disabled onclick="nextStep(6)">Далее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Дополнительные работы -->
+        <div id="step6" class="step">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">6. Какие дополнительные работы вам нужны?</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="work-option text-center p-4 rounded-xl cursor-pointer border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all" onclick="toggleWork('work1')">
+                        <div class="bg-gradient-to-br from-orange-100 to-orange-200 h-32 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/2.png">
+                        </div>
+                        <p class="text-sm font-medium">Сайдинг на цоколб</p>
+                        <div class="mt-2">
+                            <input type="checkbox" class="work-checkbox" id="work1-check">
+                        </div>
+                    </div>
+                    <div class="work-option text-center p-4 rounded-xl cursor-pointer border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all" onclick="toggleWork('work2')">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 h-32 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/3.png">
+                        </div>
+                        <p class="text-sm font-medium">Подшивка кровли софитами</p>
+                        <div class="mt-2">
+                            <input type="checkbox" class="work-checkbox" id="work2-check">
+                        </div>
+                    </div>
+                    <div class="work-option text-center p-4 rounded-xl cursor-pointer border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all" onclick="toggleWork('work3')">
+                        <div class="bg-gradient-to-br from-green-100 to-green-200 h-32 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/4.png">
+                        </div>
+                        <p class="text-sm font-medium">Утепление стен</p>
+                        <div class="mt-2">
+                            <input type="checkbox" class="work-checkbox" id="work3-check">
+                        </div>
+                    </div>
+                    <div class="work-option text-center p-4 rounded-xl cursor-pointer border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all" onclick="toggleWork('work4')">
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 h-32 rounded-lg mb-4 flex items-center justify-center">
+						<img src="https://alex20252032.github.io/zauvka/cartin/5.png">
+                        </div>
+                        <p class="text-sm font-medium">Водосточная система</p>
+                        <div class="mt-2">
+                            <input type="checkbox" class="work-checkbox" id="work4-check">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button id="nextBtn6" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold" onclick="nextStep(7)">Далее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Контактная информация -->
+        <div id="step7" class="step">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Отлично!</h2>
+                    <p class="text-xl text-gray-600">Мы уже готовим для Вас расчёт</p>
+                </div>
+                
+                <form id="contactForm" class="max-w-md mx-auto space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ваше имя *</label>
+                        <input type="text" id="userName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Введите ваше имя">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">E-mail *</label>
+                        <input type="email" id="userEmail" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="example@mail.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Вайбер *</label>
+                        <input type="tel" id="userViber" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="+375 (XX) XXX-XX-XX">
+                    </div>
+                    
+                    <div class="text-center pt-4">
+                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
+                            📤 Отправить заявку
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="step">
+            <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                <div class="text-6xl mb-4">✅</div>
+                <h2 class="text-3xl font-bold text-green-600 mb-4">Заявка отправлена!</h2>
+                <p class="text-xl text-gray-600 mb-6">Спасибо за обращение! Мы свяжемся с вами в ближайшее время для предоставления расчёта.</p>
+                <button onclick="resetForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold">
+                    Создать новую заявку
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStepNum = 1;
+        let formData = {
+            calculation: '',
+            manufacturer: '',
+            collection: '',
+            location: '',
+            area: '',
+            additionalWorks: [],
+            contact: {}
+        };
+
+        function selectOption(category, value) {
+            // Remove previous selection
+            document.querySelectorAll(`#step${currentStepNum} .image-option`).forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            event.target.closest('.image-option').classList.add('selected');
+            
+            formData[category] = value;
+            document.getElementById(`nextBtn${currentStepNum}`).disabled = false;
+        }
+
+        function selectLocation(location) {
+            // Remove previous selection
+            document.querySelectorAll('.location-option').forEach(el => {
+                el.classList.remove('border-blue-500', 'bg-blue-50');
+                el.classList.add('border-gray-200');
+            });
+            
+            // Add selection
+            event.target.classList.remove('border-gray-200');
+            event.target.classList.add('border-blue-500', 'bg-blue-50');
+            
+            if (location === 'custom') {
+                document.getElementById('customLocation').classList.remove('hidden');
+                document.getElementById('customLocation').focus();
+            } else {
+                document.getElementById('customLocation').classList.add('hidden');
+                formData.location = location;
+                document.getElementById('nextBtn4').disabled = false;
+            }
+        }
+
+        function selectArea(area) {
+            // Remove previous selection
+            document.querySelectorAll('.area-option').forEach(el => {
+                el.classList.remove('border-green-500', 'bg-green-50');
+                el.classList.add('border-gray-200');
+            });
+            
+            // Add selection
+            event.target.classList.remove('border-gray-200');
+            event.target.classList.add('border-green-500', 'bg-green-50');
+            
+            if (area === 'custom') {
+                document.getElementById('customArea').classList.remove('hidden');
+                document.getElementById('customArea').focus();
+            } else {
+                document.getElementById('customArea').classList.add('hidden');
+                formData.area = area;
+                document.getElementById('nextBtn5').disabled = false;
+            }
+        }
+
+        function toggleWork(workId) {
+            const checkbox = document.getElementById(workId + '-check');
+            const workOption = event.target.closest('.work-option');
+            
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                workOption.classList.add('border-orange-500', 'bg-orange-50');
+                if (!formData.additionalWorks.includes(workId)) {
+                    formData.additionalWorks.push(workId);
+                }
+            } else {
+                workOption.classList.remove('border-orange-500', 'bg-orange-50');
+                formData.additionalWorks = formData.additionalWorks.filter(work => work !== workId);
+            }
+        }
+
+        function nextStep(stepNum) {
+            // Hide current step
+            document.getElementById(`step${currentStepNum}`).classList.remove('active');
+            
+            // Show next step
+            document.getElementById(`step${stepNum}`).classList.add('active');
+            
+            // Update progress
+            currentStepNum = stepNum;
+            document.getElementById('currentStep').textContent = stepNum;
+            document.getElementById('progressBar').style.width = `${(stepNum / 7) * 100}%`;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Handle custom location input
+        document.getElementById('customLocation').addEventListener('input', function() {
+            if (this.value.trim()) {
+                formData.location = this.value.trim();
+                document.getElementById('nextBtn4').disabled = false;
+            } else {
+                document.getElementById('nextBtn4').disabled = true;
+            }
+        });
+
+        // Handle custom area input
+        document.getElementById('customArea').addEventListener('input', function() {
+            if (this.value.trim()) {
+                formData.area = this.value.trim();
+                document.getElementById('nextBtn5').disabled = false;
+            } else {
+                document.getElementById('nextBtn5').disabled = true;
+            }
+        });
+
+/ Handle form submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    formData.contact = {
+        name: document.getElementById('userName').value,
+        email: document.getElementById('userEmail').value,
+        viber: document.getElementById('userViber').value
+    };
+    
+    // Prepare email content
+    const emailSubject = 'Новая заявка на расчет фасада из сайдинга';
+    const emailBody = 'Новая заявка на расчет:\n\n' +
+        'Контактная информация:\n' +
+        'Имя: ' + formData.contact.name + '\n' +
+        'Email: ' + formData.contact.email + '\n' +
+        'Вайбер: ' + formData.contact.viber + '\n\n' +
+        'Детали заявки:\n' +
+        'Тип расчета: ' + getCalculationText(formData.calculation) + '\n' +
+        'Производитель: ' + getManufacturerText(formData.manufacturer) + '\n' +
+        'Коллекция: ' + getCollectionText(formData.collection) + '\n' +
+        'Местоположение: ' + formData.location + '\n' +
+        'Площадь: ' + formData.area + '\n' +
+        'Дополнительные работы: ' + (formData.additionalWorks.length > 0 ? formData.additionalWorks.join(', ') : 'Не выбраны');
+ // Send email
+    const mailtoLink = 'mailto:tama777772020@gmail.com?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
+    window.open(mailtoLink, '_blank');
+    
+    // Show success message
+    document.getElementById('step7').classList.remove('active');
+    document.getElementById('successMessage').classList.add('active');
+    
+    // Update progress to 100%
+    document.getElementById('progressBar').style.width = '100%';
+});
+
+// Helper functions to get readable text
+function getCalculationText(value) {
+    return value === 'material' ? 'Только материал' : 'Материал и работа';
+}
+function getManufacturerText(value) {
+    const manufacturers = {
+        'docke': 'Docke',
+        'fineber': 'FineBer',
+        'mitten': 'Mitten',
+        'royal': 'Royal'
+    };
+    return manufacturers[value] || value;
+}
+
+function getCollectionText(value) {
+    const collections = {
+        'lux': 'Люкс',
+        'standard': 'Стандарт',
+        'premium': 'Премиум',
+        'classic': 'Классик'
+    };
+    return collections[value] || value;
+}
+        });
+
+        function resetForm() {
+            currentStepNum = 1;
+            formData = {
+                calculation: '',
+                manufacturer: '',
+                collection: '',
+                location: '',
+                area: '',
+                additionalWorks: [],
+                contact: {}
+            };
+            
+            // Reset all steps
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+            
+            // Reset progress
+            document.getElementById('currentStep').textContent = '1';
+            document.getElementById('progressBar').style.width = '14.3%';
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            
+            // Reset all selections
+            document.querySelectorAll('.selected, .border-blue-500, .border-green-500, .border-orange-500').forEach(el => {
+                el.classList.remove('selected', 'border-blue-500', 'bg-blue-50', 'border-green-500', 'bg-green-50', 'border-orange-500', 'bg-orange-50');
+                el.classList.add('border-gray-200');
+            });
+            
+            // Reset checkboxes
+            document.querySelectorAll('.work-checkbox').forEach(cb => cb.checked = false);
+            
+            // Reset buttons
+            document.querySelectorAll('[id^="nextBtn"]').forEach(btn => {
+                if (btn.id !== 'nextBtn6') btn.disabled = true;
+            });
+            
+            // Hide custom inputs
+            document.getElementById('customLocation').classList.add('hidden');
+            document.getElementById('customArea').classList.add('hidden');
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d79307e3f101fe',t:'MTc1NDkxMzY0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
