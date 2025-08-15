@@ -469,19 +469,19 @@
             }
         });
 
-/ Handle form submission
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+		// Handle form submission
+		document.getElementById('contactForm').addEventListener('submit', function(e) {
+    	e.preventDefault();
     
-    formData.contact = {
+    	formData.contact = {
         name: document.getElementById('userName').value,
         email: document.getElementById('userEmail').value,
         viber: document.getElementById('userViber').value
-    };
+    	};
     
-    // Prepare email content
-    const emailSubject = 'Новая заявка на расчет фасада из сайдинга';
-    const emailBody = 'Новая заявка на расчет:\n\n' +
+    	// Prepare email content
+    	const emailSubject = 'Новая заявка на расчет фасада из сайдинга';
+    	const emailBody = 'Новая заявка на расчет:\n\n' +
         'Контактная информация:\n' +
         'Имя: ' + formData.contact.name + '\n' +
         'Email: ' + formData.contact.email + '\n' +
@@ -493,7 +493,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         'Местоположение: ' + formData.location + '\n' +
         'Площадь: ' + formData.area + '\n' +
         'Дополнительные работы: ' + (formData.additionalWorks.length > 0 ? formData.additionalWorks.join(', ') : 'Не выбраны');
- // Send email
+ 	// Send email
     const mailtoLink = 'mailto:tama777772020@gmail.com?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
     window.open(mailtoLink, '_blank');
     
@@ -503,13 +503,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     
     // Update progress to 100%
     document.getElementById('progressBar').style.width = '100%';
-});
+	});
 
-// Helper functions to get readable text
-function getCalculationText(value) {
+	// Helper functions to get readable text
+	function getCalculationText(value) {
     return value === 'material' ? 'Только материал' : 'Материал и работа';
-}
-function getManufacturerText(value) {
+	}
+	function getManufacturerText(value) {
     const manufacturers = {
         'lyboy': 'Любой главное цена',
         'proUPL': 'Ю-Пласт',
@@ -522,9 +522,9 @@ function getManufacturerText(value) {
         'proVOX': 'Vox'
     };
     return manufacturers[value] || value;
-}
+	}
 
-function getCollectionText(value) {
+	function getCollectionText(value) {
     const collections = {
         'el': 'Ель',
         'kirpis': 'Кирпич',
@@ -534,7 +534,7 @@ function getCollectionText(value) {
         'dub': 'Дуб'
     };
     return collections[value] || value;
-}
+	}
        // });
 
         function resetForm() {
@@ -583,6 +583,7 @@ function getCollectionText(value) {
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d79307e3f101fe',t:'MTc1NDkxMzY0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
