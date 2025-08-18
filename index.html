@@ -537,6 +537,32 @@
 	}
        // });
 
+function submitForm() {
+    // Формируем сообщение с данными заявки
+    const message = `🏠 ЗАЯВКА НА САЙДИНГ
+
+👤 Клиент: ${formData.contact.name}
+📧 Email: ${formData.contact.email}  
+📱 Viber: ${formData.contact.viber}
+
+🔧 Тип расчета: ${formData.calculation}
+🏭 Производитель: ${formData.manufacturer}
+🎨 Коллекция: ${formData.collection}
+
+Дата: ${new Date().toLocaleDateString()}`;
+
+    // Открываем Viber с готовым сообщением для продавца
+    //const viberUrl = `viber://chat?number=%2B79123456789&text=${encodeURIComponent(message)}`;
+    const viberUrl = `viber://chat?number=%2B375295668488&text=${encodeURIComponent(message)}`;
+    
+    // Показываем успешное сообщение клиенту
+    alert('Заявка отправляется в Viber продавца!');
+    
+    // Открываем Viber
+    window.open(viberUrl, '_blank');
+}
+
+		
         function resetForm() {
             currentStepNum = 1;
             formData = {
@@ -583,6 +609,7 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d79307e3f101fe',t:'MTc1NDkxMzY0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
