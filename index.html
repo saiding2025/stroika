@@ -348,44 +348,8 @@
             </div>
         </div>
     </div>
-<!-- Для отправки электронных писем -->
-<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-<script>
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Не обновляйте страницу, пока сообщение не отправлено
-    emailjs.sendForm('service_ue7uyar', 'template_76tqrn8', this)
-        .then(function() {
-            alert('Сообщение успешно отправлено!');
-        }, function(error) {
-            alert('Ошибка отправки: ' + error);
-        });
-});
-</script>
 	
-    <script>
-//emailjs.init("service_ue7uyar"); // Этот ID будет вашим виртуальным почтальоном		
-emailjs.send("service_ue7uyar", "template_76tqrn8", {
-    to_email: "recipient@example.com",
-    from_email: "sender@example.com",
-    message: "Заявка",
-    attachments: [
-        {
-            filename: mailtoLink,
-            content: "BASE64_ENCODED_CONTENT", // Замените на закодированное содержимое PDF
-            encoding: "base64",
-            contentType: "application/pdf"
-        }
-    ]
-}, "Alex")
-.then(
-    function(response) {
-        console.log("SUCCESS!", response.status, response.text);
-    },
-    function(error) {
-        console.log("FAILED...", error);
-    }
-);
-		
+    <script>		
         let currentStepNum = 1;
         let formData = {
             calculation: '',
@@ -534,7 +498,7 @@ emailjs.send("service_ue7uyar", "template_76tqrn8", {
         'Дополнительные работы: ' + (formData.additionalWorks.length > 0 ? formData.additionalWorks.join(', ') : 'Не выбраны');
  // Send email
     const mailtoLink = 'mailto:tama777772020@gmail.com?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
-    //window.open(mailtoLink, '_blank');
+    window.open(mailtoLink, '_blank');
     
     // Show success message
     document.getElementById('step7').classList.remove('active');
@@ -652,6 +616,7 @@ formData.contact = {
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d79307e3f101fe',t:'MTc1NDkxMzY0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
