@@ -349,7 +349,11 @@
         </div>
     </div>
 	
-    <script>		
+    <script>
+// Инициализация EmailJS
+(function() {
+    emailjs.init('FpOfj17F8Ne1tMuTf'); // Замените на ваш реальный Public Key
+})();		
         let currentStepNum = 1;
         let formData = {
             calculation: '',
@@ -540,6 +544,48 @@
 	}
        // });
 
+// Функция отправки через EmailJS
+function sendWithEmailJS() {
+    // Собираем данные контакта
+    formData.contact = {
+        name: document.getElementById('userName').value,
+        email: document.getElementById('userEmail').value,
+        viber: document.getElementById('userViber').value
+    };
+// Формируем сообщение
+    const message = `🏠 ЗАЯВКА НА САЙДИНГ
+
+👤 Клиент: ${formData.contact.name}
+📧 Email: ${formData.contact.email}  
+📱 Viber: ${formData.contact.viber}
+
+🔧 Тип расчета: ${getCalculationText(formData.calculation)}
+🏭 Производитель: ${getManufacturerText(formData.manufacturer)}
+🎨 Коллекция: ${getCollectionText(formData.collection)}
+📍 Местоположение: ${formData.location}
+📐 Площадь: ${formData.area}
+🔧 Дополнительные работы: ${formData.additionalWorks.length > 0 ? formData.additionalWorks.join(', ') : 'Не выбраны'}
+
+Дата: ${new Date().toLocaleDateString()}`;
+// Отправляем через EmailJS
+    emailjs.send('service_ue7uyar', 'plate_h1i7temzjp', {
+        user_name: formData.contact.name,
+        user_email: formData.contact.email,
+        message: message
+    })
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('✅ Заявка успешно отправлена!');
+ // Показываем сообщение об успехе
+        document.getElementById('step7').classList.remove('active');
+        document.getElementById('successMessage').classList.add('active');
+        document.getElementById('progressBar').style.width = '100%';
+        
+    }, function(error) {
+        console.log('FAILED...', error);
+        alert('❌ Ошибка отправки. Попробуйте отправку через Viber.');
+    });
+}		
 function submitForm() {
     // Формируем сообщение с данными заявки
     const message = `🏠 ЗАЯВКА НА САЙДИНГ
@@ -616,6 +662,7 @@ formData.contact = {
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d79307e3f101fe',t:'MTc1NDkxMzY0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
