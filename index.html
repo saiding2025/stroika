@@ -329,14 +329,36 @@
                     </div>
                     
                     <div class="text-center pt-4">
-                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
-                            📤 Отправить заявку
-                        </button>
+
+<button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
+    📤 Отправить заявку
+</button>
+
+<div class="flex gap-4 justify-center flex-wrap">
+    <button type="button" onclick="sendWithEmailJS()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
+        📧 Отправить автоматически
+    </button>
+    
+    <button type="button" onclick="submitForm()" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
+        📱 Отправить в Viber
+    </button>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+						
+						
+                        //<button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
+                         //   📤 Отправить заявку
+                        //</button>
                     </div>
                 </form>
 				
             </div>
         </div>
+
+
+
+		
         <!-- Success Message -->
         <div id="successMessage" class="step">
             <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
@@ -664,6 +686,7 @@ formData.contact = {
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d79307e3f101fe',t:'MTc1NDkxMzY0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
